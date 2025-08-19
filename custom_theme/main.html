@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ config.site_description or '' }}">
+    <meta name="author" content="{{ config.site_author or '' }}">
+    
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{{ 'img/favicon.ico'|url }}">
+    
+    <!-- CSS -->
+    {% for path in config['extra_css'] %}
+        <link rel="stylesheet" href="{{ path|url }}">
+    {% endfor %}
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- MkDocs theme specific -->
+    <script>
+        var base_url = '{{ base_url }}';
+        var shortcuts = {{ config.theme.shortcuts|default({})|tojson }};
+    </script>
+</head>
+
+<body>
+    <!-- Progress Indicator -->
+    <div class="progress-indicator">
+        <div class="progress-fill"></div>
+    </div>
+    
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    
+    <!-- Floating Elements Container -->
+    <div id="floating-elements">
+        <div class="floating-particle" data-speed="0.5"></div>
+        <div class="floating-particle" data-speed="0.8"></div>
+        <div class="floating-particle" data-speed="0.3"></div>
+        <div class="floating-particle" data-speed="0.6"></div>
+        <div class="floating-particle" data-speed="0.4"></div>
+    </div>
+
+    <!-- Fixed Animated Header -->
+    <header id="main-header" class="fixed-header">
+        <div class="header-container">
+            <div class="header-left">
+                <h1 class="site-title">
+                    <a href="{{ nav.homepage.url|url }}">{{ config.site_name }}</a>
+                </h1>
+            </div>
+            
+            <nav class="header-nav">
+                <div class="page-slider-nav">
+                    {% for nav_item in nav %}
+                        <a href="{{ nav_item.url|url }}" 
+                           class="nav-link {% if nav_item.active %}active{% endif %}"
+                           data-page="{{ loop.index0 }}">
+                            {{ nav_item.title }}
+                        </a>
+                    {% endfor %}
+                </div>
+                
+                <!-- Page Progress Indicator -->
+                <div class="page-progress">
+                    <div class="progress-bar"></div>
+                    <span class="page-counter">
+                        <span class="current-page">1</span> / <span class="total-pages">{{ nav|length }}</span>
+                    </span>
+                </div>
+            </nav>
+            
+            <div class="header-right">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="search-toggle" aria-label="Toggle search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Animated header background -->
+        <div class="header-bg-animation"></div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="main-container">
+        <div class="content-wrapper">
+            <!-- Page Content Container -->
+            <div id="page-content" class="page-content-wrapper">
+                <article class="page-content">
+                    <div class="content-inner">
+                        {% if page.title %}
+                            <header class="page-header">
+                                <h1 class="page-title">{{ page.title }}</h1>
+                                {% if page.meta.description %}
+                                    <p class="page-description">{{ page.meta.description }}</p>
+                                {% endif %}
+                            </header>
+                        {% endif %}
+                        
+                        <div class="markdown-content">
+                            {{ page.content }}
+                        </div>
+                        
+                        <!-- Page Navigation -->
+                        <nav class="page-navigation">
+                            {% if page.previous_page %}
+                                <a href="{{ page.previous_page.url|url }}" class="nav-prev">
+                                    <span class="nav-icon">←</span>
+                                    <span class="nav-text">{{ page.previous_page.title }}</span>
+                                </a>
+                            {% endif %}
+                            
+                            {% if page.next_page %}
+                                <a href="{{ page.next_page.url|url }}" class="nav-next">
+                                    <span class="nav-text">{{ page.next_page.title }}</span>
+                                    <span class="nav-icon">→</span>
+                                </a>
+                            {% endif %}
+                        </nav>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Social Links -->
+    <div class="social-links">
+        <a href="https://github.com/etozhedex" class="social-link github" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+        </a>
+        <a href="https://t.me/etozhedex" class="social-link telegram" target="_blank" rel="noopener" aria-label="Telegram">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+        </a>
+        <a href="mailto:contact@etozhedex.dev" class="social-link email" target="_blank" rel="noopener" aria-label="Email">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+        </a>
+    </div>
+
+    <!-- End of Content Message -->
+    <div id="end-message" class="end-message hidden">
+        <div class="end-message-content">
+            <div class="end-message-icon">✨</div>
+            <h3>Благодарю, что прочитали это до конца!</h3>
+            <p>Надеюсь, информация была полезной</p>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="search-modal" class="search-modal hidden">
+        <div class="search-modal-content">
+            <div class="search-header">
+                <input type="text" id="search-input" placeholder="Поиск..." autocomplete="off">
+                <button class="search-close" aria-label="Close search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    {% for path in config['extra_javascript'] %}
+        <script src="{{ path|url }}"></script>
+    {% endfor %}
+    
+    <!-- Initialize theme -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize theme functionality
+            if (typeof initTheme === 'function') {
+                initTheme();
+            }
+        });
+    </script>
+</body>
+</html>

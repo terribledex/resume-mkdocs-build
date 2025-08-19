@@ -1,0 +1,57 @@
+site_name: Богоподобное резюме
+site_description: Это я
+site_author: etozhedex
+site_url: https://terribledex.github.io/resume/
+
+# GitHub Pages configuration
+use_directory_urls: true
+repo_url: https://github.com/terribledex/resume
+repo_name: terribledex/resume
+edit_uri: edit/main/docs/
+
+# Theme configuration
+theme:
+  name: null
+  custom_dir: custom_theme/
+  
+# Navigation structure for page slider
+nav:
+  - Главная: index.md
+  - Не главная: main.md
+
+# Extensions
+markdown_extensions:
+  - toc:
+      permalink: false 
+      toc_depth: 3
+  - admonition
+  - codehilite:
+      css_class: highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - attr_list
+  - md_in_html
+
+# Additional CSS and JS
+extra_css:
+  - css/extra.css
+
+extra_javascript:
+  - js/extra.js
+
+# Additional configuration
+extra:
+  generator: false  # Remove "Created with MkDocs" footer
+
+# Plugin configuration
+plugins:
+  - search:
+      lang: en
+
+copyright: |
+  <div class="copyright-container">
+    <span>Copyright &copy; 2025 etozhedex   </span>
+    <span class="made-with">Создано с ❤️ и MkDocs Material</span>
+  </div>
+
+#
