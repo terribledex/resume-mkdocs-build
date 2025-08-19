@@ -45,6 +45,9 @@
         <div class="floating-particle" data-speed="0.6"></div>
         <div class="floating-particle" data-speed="0.4"></div>
     </div>
+    
+    <!-- Animated Background Layer -->
+    <div id="animated-bg" aria-hidden="true"></div>
 
     <!-- Fixed Animated Header -->
     <header id="main-header" class="fixed-header">
@@ -76,6 +79,12 @@
             </nav>
             
             <div class="header-right">
+                <button class="party-toggle" aria-label="Party mode" title="Party mode (P)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 20l4-12 12-4-4 12-12 4z"></path>
+                        <circle cx="12" cy="12" r="1"></circle>
+                    </svg>
+                </button>
                 <button class="theme-toggle" aria-label="Toggle theme">
                     <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="5"></circle>

@@ -10,16 +10,22 @@ class EnhancedThemeManager {
         this.cursor = null;
         this.progressBar = null;
         this.isMobile = window.innerWidth <= 768;
+        this.partyMode = localStorage.getItem('partyMode') === 'true';
+        this.konamiBuffer = [];
         
         this.handleMouseMove = this.handleMouseMove.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
         this.toggleTheme = this.toggleTheme.bind(this);
+        this.togglePartyMode = this.togglePartyMode.bind(this);
         
         this.init();
     }
 
     init() {
         this.setupThemeToggle();
+        this.setupPartyToggle();
+        this.applyTheme();
+        this.applyPartyMode();
         this.setupCustomCursor();
         this.setupProgressBar();
         this.setupNavigation();
@@ -29,7 +35,7 @@ class EnhancedThemeManager {
         this.setupSocialLinks();
         this.showEndMessage();
         this.updatePageProgress();
-        this.applyTheme();
+        this.pageEnterTransition();
         
         console.log('🎨 Enhanced Theme Manager initialized');
     }
@@ -67,6 +73,31 @@ class EnhancedThemeManager {
                 sunIcon.classList.remove('hidden');
                 moonIcon.classList.add('hidden');
             }
+        }
+    }
+
+    // Party Mode
+    setupPartyToggle() {
+        const btn = document.querySelector('.party-toggle');
+        if (!btn) return;
+        btn.addEventListener('click', this.togglePartyMode);
+    }
+
+    togglePartyMode() {
+        this.partyMode = !this.partyMode;
+        localStorage.setItem('partyMode', String(this.partyMode));
+        this.applyPartyMode();
+        if (this.partyMode) {
+            this.launchConfetti(250);
+        }
+    }
+
+    applyPartyMode() {
+        const root = document.documentElement;
+        if (this.partyMode) {
+            root.classList.add('party-mode');
+        } else {
+            root.classList.remove('party-mode');
         }
     }
 
@@ -250,6 +281,7 @@ class EnhancedThemeManager {
     setupAnimations() {
         this.animateOnScroll();
         this.setupHoverEffects();
+        this.setupTiltEffects();
     }
 
     animateOnScroll() {
@@ -298,6 +330,22 @@ class EnhancedThemeManager {
     // Keyboard Shortcuts
     setupKeyboardShortcuts() {
         document.addEventListener('keydown', (e) => {
+            // Party mode hotkey P
+            if (e.key.toLowerCase() === 'p' && !e.ctrlKey && !e.metaKey) {
+                const activeElement = document.activeElement;
+                if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA') {
+                    this.togglePartyMode();
+                    e.preventDefault();
+                }
+            }
+
+            // Konami code → enable party mode
+            const konami = ['arrowup','arrowup','arrowdown','arrowdown','arrowleft','arrowright','arrowleft','arrowright','b','a'];
+            this.konamiBuffer.push(e.key.toLowerCase());
+            if (this.konamiBuffer.length > konami.length) this.konamiBuffer.shift();
+            if (konami.every((k, i) => this.konamiBuffer[i] === k)) {
+                if (!this.partyMode) this.togglePartyMode();
+            }
             if (e.key.toLowerCase() === 't' && !e.ctrlKey && !e.metaKey) {
                 const activeElement = document.activeElement;
                 if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA') {
@@ -343,6 +391,39 @@ class EnhancedThemeManager {
                 this.closeSearch();
             }
         });
+    }
+
+    // Tilt hover for images and pre blocks
+    setupTiltEffects() {
+        const items = document.querySelectorAll('img, pre, .social-link');
+        items.forEach(el => {
+            el.classList.add('tiltable');
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
+                const rotX = (y - 0.5) * -8;
+                const rotY = (x - 0.5) * 8;
+                el.style.transform = `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = '';
+            });
+        });
+    }
+
+    // Page enter transition
+    pageEnterTransition() {
+        const main = document.querySelector('#page-content');
+        if (!main) return;
+        main.classList.add('page-enter');
+        requestAnimationFrame(() => {
+            main.classList.add('page-enter-active');
+        });
+        setTimeout(() => {
+            main.classList.remove('page-enter');
+            main.classList.remove('page-enter-active');
+        }, 600);
     }
 
     // Search
@@ -517,6 +598,37 @@ class EnhancedThemeManager {
                 }, 500);
             }
         });
+    }
+
+    // Confetti
+    launchConfetti(count = 200) {
+        const colors = ['#ff6b6b','#f7b801','#6fffe9','#5bc0eb','#c77dff'];
+        for (let i = 0; i < count; i++) {
+            const conf = document.createElement('div');
+            const size = 6 + Math.random() * 6;
+            conf.style.cssText = `
+                position: fixed;
+                width: ${size}px;
+                height: ${size}px;
+                background: ${colors[i % colors.length]};
+                top: -10px;
+                left: ${Math.random() * 100}vw;
+                opacity: ${0.7 + Math.random() * 0.3};
+                transform: translateY(0) rotate(0deg);
+                z-index: 9999;
+                border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+                pointer-events: none;
+            `;
+            document.body.appendChild(conf);
+            const duration = 2000 + Math.random() * 2000;
+            const translateY = window.innerHeight + 50;
+            const rotate = (Math.random() * 360) + 360;
+            conf.animate([
+                { transform: 'translateY(0) rotate(0deg)' },
+                { transform: `translateY(${translateY}px) rotate(${rotate}deg)` }
+            ], { duration, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' });
+            setTimeout(() => conf.remove(), duration);
+        }
     }
 }
 
