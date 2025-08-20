@@ -1,0 +1,82 @@
+name: Deploy MkDocs Resume
+
+on:
+  # Запуск при push в main ветку
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  
+  # Возможность запуска вручную
+  workflow_dispatch:
+
+# Необходимые разрешения для деплоя на GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Разрешить только один одновременный деплой
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Сборка сайта
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        # Получаем полную историю для git info plugin (если будете использовать)
+        fetch-depth: 0
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.x
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+    
+    - name: Build MkDocs site
+      run: |
+        mkdocs build --verbose --clean --strict
+    
+    - name: Upload Pages artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: './site'
+
+  # Деплой на GitHub Pages
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2
+
+  # Проверка ссылок - опциональная
+  # link-check:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+    
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v4
+    
+  #   - name: Check links
+  #     uses: lycheeverse/lychee-action@v1.8.0
+  #     with:
+  #       args: --verbose --no-progress './site/**/*.html'
+  #       fail: true

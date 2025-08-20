@@ -1,0 +1,448 @@
+/* animations.css - Динамичные анимации для милого сайта */
+
+/* Плавающие элементы фона */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(136, 57, 239, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(234, 118, 203, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(210, 15, 57, 0.1) 0%, transparent 50%);
+  animation: backgroundFloat 20s ease-in-out infinite;
+}
+
+@keyframes backgroundFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+/* Анимированный хедер */
+.md-header {
+  /* Фон будет установлен в cute-theme.css */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(136, 57, 239, 0.2);
+  box-shadow: var(--cute-shadow);
+  transition: var(--cute-transition);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.md-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(136, 57, 239, 0.25);
+}
+
+/* Анимация логотипа */
+.md-header__button {
+  transition: var(--cute-transition);
+}
+
+.md-header__button:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Плавающие частицы */
+.floating-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--cute-primary);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: particleFloat 15s infinite linear;
+}
+
+.particle:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 20s;
+}
+
+.particle:nth-child(2) {
+  left: 20%;
+  animation-delay: 2s;
+  animation-duration: 18s;
+}
+
+.particle:nth-child(3) {
+  left: 30%;
+  animation-delay: 4s;
+  animation-duration: 22s;
+}
+
+.particle:nth-child(4) {
+  left: 40%;
+  animation-delay: 6s;
+  animation-duration: 16s;
+}
+
+.particle:nth-child(5) {
+  left: 50%;
+  animation-delay: 8s;
+  animation-duration: 24s;
+}
+
+.particle:nth-child(6) {
+  left: 60%;
+  animation-delay: 10s;
+  animation-duration: 19s;
+}
+
+.particle:nth-child(7) {
+  left: 70%;
+  animation-delay: 12s;
+  animation-duration: 21s;
+}
+
+.particle:nth-child(8) {
+  left: 80%;
+  animation-delay: 14s;
+  animation-duration: 17s;
+}
+
+.particle:nth-child(9) {
+  left: 90%;
+  animation-delay: 16s;
+  animation-duration: 23s;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Пульсирующий эффект для важных элементов */
+.pulse-effect {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--cute-primary);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--cute-primary), 0 0 30px var(--cute-primary);
+  }
+}
+
+/* Анимация печатания */
+.typewriter-effect {
+  overflow: hidden;
+  border-right: 3px solid var(--cute-primary);
+  white-space: nowrap;
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { 
+    width: 0; 
+  }
+  to { 
+    width: 100%; 
+  }
+}
+
+@keyframes blink-caret {
+  from, to { 
+    border-color: transparent; 
+  }
+  50% { 
+    border-color: var(--cute-primary); 
+  }
+}
+
+/* Эффект мерцания */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shimmerEffect 3s infinite;
+}
+
+@keyframes shimmerEffect {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Анимация появления контента */
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in-up:nth-child(1) { animation-delay: 0.1s; }
+.fade-in-up:nth-child(2) { animation-delay: 0.2s; }
+.fade-in-up:nth-child(3) { animation-delay: 0.3s; }
+.fade-in-up:nth-child(4) { animation-delay: 0.4s; }
+.fade-in-up:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Анимация для навигации */
+.md-nav__link {
+  position: relative;
+  transition: var(--cute-transition);
+  border-radius: var(--cute-border-radius-small);
+  overflow: hidden;
+}
+
+.md-nav__link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--cute-gradient);
+  opacity: 0.1;
+  transition: var(--cute-transition);
+  z-index: -1;
+}
+
+.md-nav__link:hover::before {
+  left: 0;
+}
+
+.md-nav__link:hover {
+  transform: translateX(5px);
+  color: var(--cute-primary);
+}
+
+/* Анимация кнопок */
+.md-button {
+  position: relative;
+  background: var(--cute-gradient);
+  border: none;
+  border-radius: var(--cute-border-radius);
+  color: white;
+  padding: 12px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--cute-transition);
+  overflow: hidden;
+}
+
+.md-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transition: all 0.6s ease;
+  transform: translate(-50%, -50%);
+}
+
+.md-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.md-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--cute-glow);
+}
+
+/* Скролл-бар с анимацией */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cute-surface);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cute-gradient);
+  border-radius: 10px;
+  transition: var(--cute-transition);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: var(--cute-glow);
+  transform: scale(1.2);
+}
+
+/* Анимированные иконки */
+.animated-icon {
+  display: inline-block;
+  transition: var(--cute-transition);
+}
+
+.animated-icon:hover {
+  transform: scale(1.2) rotate(10deg);
+  filter: drop-shadow(0 0 10px var(--cute-primary));
+}
+
+/* Рябь при клике */
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(136, 57, 239, 0.3);
+  transform: translate(-50%, -50%);
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  to {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+/* Плавающий текст */
+.floating-text {
+  animation: floatText 4s ease-in-out infinite;
+}
+
+@keyframes floatText {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Градиентная анимация для заголовков */
+.gradient-text {
+  color: var(--cute-primary) !important;
+  position: relative;
+  animation: gradientMove 3s linear infinite;
+}
+
+.gradient-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--cute-gradient);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 3s linear infinite;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Анимация для мобильных устройств */
+@media (max-width: 768px) {
+  /* Уменьшаем интенсивность анимаций на мобильных */
+  .particle {
+    display: none;
+  }
+  
+  body::before {
+    animation-duration: 30s;
+  }
+  
+  .md-header:hover {
+    transform: none;
+  }
+}
+
+/* Prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

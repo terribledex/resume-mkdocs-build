@@ -1,0 +1,18 @@
+# MkDocs и тема Material
+mkdocs>=1.5.0
+mkdocs-material>=9.4.0
+
+# Плагины для улучшения функциональности
+mkdocs-minify-plugin>=0.7.0      # Минификация HTML/CSS/JS
+mkdocs-glightbox>=0.3.0          # Lightbox для изображений
+
+# Опциональные плагины (раскомментируйте при необходимости)
+# mkdocs-git-revision-date-localized-plugin>=1.2.0  # Даты изменения файлов
+# mkdocs-awesome-pages-plugin>=2.9.0                # Улучшенная навигация
+# mkdocs-redirects>=1.2.0                           # Редиректы
+# mkdocs-rss-plugin>=1.8.0                          # RSS фид
+# mkdocs-social>=0.3.0                              # Social cards
+# mkdocs-blog-plugin>=0.2.0                         # Блог функциональность
+
+# Инструменты для разработки и проверки качества
+yamllint>=1.32.0                 # Проверка YAML файлов

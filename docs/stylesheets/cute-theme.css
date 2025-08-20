@@ -1,0 +1,259 @@
+/* Основные стили милой темы */
+:root {
+    --cute-border-radius: 15px;
+    --cute-border-radius-small: 8px;
+    --cute-spacing: 20px;
+    --cute-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Стилизация header */
+  .md-header {
+    background: var(--cute-gradient) !important;
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(136, 57, 239, 0.2);
+    box-shadow: 0 4px 20px rgba(136, 57, 239, 0.3);
+    transition: var(--cute-transition);
+  }
+  
+  /* Стилизация заголовка сайта в header */
+  .md-header__title {
+    color: white !important;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Стилизация навигации в header */
+  .md-header-nav__title {
+    color: white !important;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Стилизация кнопок в header */
+  .md-header__button {
+    color: white !important;
+  }
+  
+  .md-header__button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+  }
+  
+  /* Стилизация иконок в header */
+  .md-header .md-icon {
+    color: white !important;
+  }
+  
+  /* Общий контейнер */
+  .md-container {
+    background: var(--cute-bg);
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  /* Добавляем отступ для фиксированного header */
+  .md-main {
+    padding-top: 80px;
+  }
+  
+  /* Стилизация основного контента */
+  .md-content__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--cute-spacing);
+    background: var(--cute-surface);
+    border-radius: var(--cute-border-radius);
+    box-shadow: var(--cute-shadow);
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .md-content__inner::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--cute-gradient);
+    border-radius: var(--cute-border-radius);
+    z-index: -1;
+    opacity: 0.1;
+  }
+  
+  /* Стилизация заголовков */
+  .md-typeset h1 {
+    color: var(--cute-primary) !important;
+    font-size: 2.5em;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    animation: fadeInUp 0.8s ease-out;
+    text-shadow: 0 2px 4px rgba(136, 57, 239, 0.2);
+  }
+  
+  .md-typeset h1::after {
+    content: '✨';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.6em;
+    animation: sparkle 2s ease-in-out infinite;
+  }
+  
+  .md-typeset h2 {
+    color: var(--cute-primary);
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 30px;
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .md-typeset h2::before {
+    content: '💜';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+  }
+  
+  .md-typeset h3 {
+    color: var(--cute-secondary);
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 25px;
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .md-typeset h3::before {
+    content: '🌸';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+  }
+  
+  /* Стилизация параграфов */
+  .md-typeset p {
+    color: var(--cute-text);
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+    position: relative;
+  }
+  
+  /* Стилизация ссылок */
+  .md-typeset a {
+    color: var(--cute-primary);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: var(--cute-transition);
+    position: relative;
+  }
+  
+  .md-typeset a:hover {
+    color: var(--cute-secondary);
+    border-bottom-color: var(--cute-secondary);
+    transform: translateY(-2px);
+  }
+  
+  /* Стилизация изображений */
+  .md-typeset img {
+    border-radius: var(--cute-border-radius);
+    box-shadow: var(--cute-shadow);
+    transition: var(--cute-transition);
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .md-typeset img:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: var(--cute-glow);
+  }
+  
+  /* Анимации */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes sparkle {
+    0%, 100% {
+      transform: translateY(-50%) scale(1);
+    }
+    50% {
+      transform: translateY(-50%) scale(1.2);
+    }
+  }
+  
+  /* Дополнительные исправления контрастности */
+  .md-nav__title,
+  .md-nav__item .md-nav__link {
+    color: var(--cute-text) !important;
+  }
+  
+  .md-nav__link:hover {
+    color: var(--cute-primary) !important;
+  }
+  
+  .md-typeset blockquote {
+    border-left: 4px solid var(--cute-primary);
+    background: var(--cute-surface);
+    color: var(--cute-text);
+  }
+  
+  .md-typeset code {
+    background: var(--cute-surface);
+    color: var(--cute-primary);
+  }
+  
+  .md-typeset pre {
+    background: var(--cute-surface);
+  }
+  
+  .md-typeset table {
+    background: var(--cute-surface);
+  }
+  
+  .md-typeset table th {
+    background: var(--cute-primary);
+    color: white;
+  }
+  
+  .md-typeset table td {
+    color: var(--cute-text);
+  }
+  
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .md-typeset h1 {
+      font-size: 2em;
+    }
+    
+    .md-typeset h1::after {
+      right: -25px;
+    }
+    
+    .md-content__inner {
+      margin: 10px;
+      padding: 15px;
+    }
+  }

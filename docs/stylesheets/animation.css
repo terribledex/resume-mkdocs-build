@@ -1,0 +1,356 @@
+/* Ключевые кадры для анимаций */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+  }
+  
+  @keyframes glow {
+    0%, 100% { box-shadow: var(--cute-shadow); }
+    50% { box-shadow: var(--cute-glow); }
+  }
+  
+  @keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes slideInFromTop {
+    0% { 
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      transform: translate3d(0, -15px, 0);
+    }
+    70% {
+      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      transform: translate3d(0, -7px, 0);
+    }
+    90% {
+      transform: translate3d(0, -2px, 0);
+    }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(180deg); }
+  }
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes confetti {
+    0% {
+      transform: translateY(-100vh) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+  
+  /* Фиксированный header с анимацией */
+  .md-header {
+    position: fixed !important;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: var(--cute-bg) !important;
+    border-bottom: 2px solid transparent;
+    background-image: var(--cute-gradient) !important;
+    background-clip: padding-box;
+    animation: slideInFromTop 0.8s ease-out;
+    transition: all 0.3s ease;
+  }
+  
+  .md-header:hover {
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  .md-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--cute-gradient);
+    background-size: 400% 400%;
+    animation: rainbow 8s ease infinite;
+    opacity: 0.1;
+    z-index: -1;
+  }
+  
+  /* Анимация для логотипа */
+  .md-header__title {
+    animation: float 6s ease-in-out infinite;
+    transition: all 0.3s ease;
+  }
+  
+  .md-header__title:hover {
+    animation: bounce 1s;
+    color: var(--cute-primary) !important;
+  }
+  
+  /* Динамичные элементы навигации */
+  .md-nav__item {
+    transition: all 0.3s ease;
+  }
+  
+  .md-nav__item:hover {
+    transform: translateX(5px);
+  }
+  
+  .md-nav__link {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .md-nav__link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--cute-gradient);
+    opacity: 0.1;
+    transition: left 0.3s ease;
+  }
+  
+  .md-nav__link:hover::before {
+    left: 0;
+  }
+  
+  /* Плавающие декоративные элементы */
+  .cute-decoration {
+    position: fixed;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.1;
+  }
+  
+  .cute-decoration.heart {
+    font-size: 20px;
+    color: var(--cute-accent);
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  .cute-decoration.star {
+    font-size: 16px;
+    color: var(--cute-secondary);
+    animation: sparkle 4s ease-in-out infinite;
+  }
+  
+  /* Анимация для контента */
+  .md-content {
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  .md-content__inner {
+    position: relative;
+  }
+  
+  /* Стилизация кнопок */
+  .md-button {
+    background: var(--cute-gradient) !important;
+    border: none !important;
+    border-radius: 25px !important;
+    padding: 12px 24px !important;
+    color: white !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: var(--cute-shadow) !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  
+  .md-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
+  }
+  
+  .md-button:hover::before {
+    left: 100%;
+  }
+  
+  .md-button:hover {
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: var(--cute-glow) !important;
+  }
+  
+  /* Стилизация поиска */
+  .md-search__form {
+    border-radius: 25px !important;
+    background: var(--cute-surface) !important;
+    box-shadow: var(--cute-shadow) !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .md-search__form:hover {
+    box-shadow: var(--cute-glow) !important;
+    transform: scale(1.02);
+  }
+  
+  .md-search__input {
+    border-radius: 25px !important;
+    background: transparent !important;
+  }
+  
+  /* Анимация для параграфов */
+  .md-typeset p {
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+  }
+  
+  .md-typeset p:nth-child(1) { animation-delay: 0.1s; }
+  .md-typeset p:nth-child(2) { animation-delay: 0.2s; }
+  .md-typeset p:nth-child(3) { animation-delay: 0.3s; }
+  .md-typeset p:nth-child(4) { animation-delay: 0.4s; }
+  .md-typeset p:nth-child(5) { animation-delay: 0.5s; }
+  
+  /* Эффект для изображений */
+  .md-typeset img {
+    border-radius: 15px !important;
+    box-shadow: var(--cute-shadow) !important;
+    transition: all 0.3s ease !important;
+    animation: fadeInUp 0.8s ease-out !important;
+  }
+  
+  .md-typeset img:hover {
+    transform: scale(1.02) rotate(1deg) !important;
+    box-shadow: var(--cute-glow) !important;
+  }
+  
+  /* Эффект прокрутки */
+  .scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: var(--cute-gradient);
+    z-index: 9999;
+    transition: width 0.1s ease;
+    border-radius: 0 4px 4px 0;
+  }
+  
+  /* Эффект конца страницы */
+  .end-effect {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--cute-gradient);
+    color: white;
+    padding: 30px 50px;
+    border-radius: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    animation: bounce 1s ease;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+  }
+  
+  .end-effect.show {
+    opacity: 1;
+    visibility: visible;
+    animation: bounce 1s ease, pulse 0.5s ease 1s 3;
+  }
+  
+  .end-effect::before {
+    content: '🎉';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    font-size: 40px;
+    animation: sparkle 2s ease infinite;
+  }
+  
+  .end-effect::after {
+    content: '✨';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    font-size: 35px;
+    animation: sparkle 2s ease infinite 0.5s;
+  }
+  
+  /* Конфетти эффект */
+  .confetti {
+    position: fixed;
+    top: -10px;
+    z-index: 9999;
+    pointer-events: none;
+  }
+  
+  .confetti-piece {
+    width: 10px;
+    height: 10px;
+    background: var(--cute-accent);
+    position: absolute;
+    animation: confetti 3s linear infinite;
+  }
+  
+  .confetti-piece:nth-child(odd) {
+    background: var(--cute-primary);
+    border-radius: 50%;
+  }
+  
+  .confetti-piece:nth-child(3n) {
+    background: var(--cute-secondary);
+    border-radius: 50% 0;
+  }
+  
+  /* Отзывчивость */
+  @media (max-width: 768px) {
+    .end-effect {
+      font-size: 18px;
+      padding: 20px 30px;
+    }
+    
+    .cute-decoration {
+      display: none;
+    }
+  }

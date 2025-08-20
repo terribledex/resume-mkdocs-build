@@ -1,0 +1,144 @@
+/* Catppuccin Latte с фиолетовым оттенком */
+[data-md-color-scheme="catppuccin-latte-purple"] {
+    --md-primary-fg-color: #8839ef;
+    --md-primary-fg-color--light: #a855f7;
+    --md-primary-fg-color--dark: #7c3aed;
+    --md-primary-bg-color: #eff1f5;
+    --md-primary-bg-color--light: #f3f4f6;
+    
+    --md-accent-fg-color: #ea76cb;
+    --md-accent-fg-color--transparent: #ea76cb1a;
+    --md-accent-bg-color: #ea76cb;
+    --md-accent-bg-color--light: #f3e8ff;
+    
+    --md-default-fg-color: #4c4f69;
+    --md-default-fg-color--light: #6c6f85;
+    --md-default-fg-color--lighter: #9ca0b0;
+    --md-default-fg-color--lightest: #bcc0cc;
+    --md-default-bg-color: #eff1f5;
+    --md-default-bg-color--light: #f4f5f8;
+    --md-default-bg-color--lighter: #f8f9fb;
+    --md-default-bg-color--lightest: #fcfcfd;
+    
+    --md-code-fg-color: #4c4f69;
+    --md-code-bg-color: #e6e9ef;
+    --md-code-hl-color: #dc8a78;
+    --md-code-hl-number-color: #fe640b;
+    --md-code-hl-special-color: #ea76cb;
+    --md-code-hl-function-color: #8839ef;
+    --md-code-hl-constant-color: #fe640b;
+    --md-code-hl-keyword-color: #8839ef;
+    --md-code-hl-string-color: #40a02b;
+    --md-code-hl-name-color: #179299;
+    --md-code-hl-operator-color: #04a5e5;
+    --md-code-hl-punctuation-color: #5c5f77;
+    --md-code-hl-comment-color: #acb0be;
+    --md-code-hl-generic-color: #e64553;
+    --md-code-hl-variable-color: #4c4f69;
+    
+    --md-typeset-color: #4c4f69;
+    --md-typeset-a-color: #8839ef;
+    --md-typeset-mark-color: #dc8a78;
+    --md-typeset-del-color: #e64553;
+    --md-typeset-ins-color: #40a02b;
+    --md-typeset-kbd-color: #5c5f77;
+    --md-typeset-kbd-accent-color: #7c7f93;
+    --md-typeset-kbd-border-color: #9ca0b0;
+    
+    --md-admonition-fg-color: #4c4f69;
+    --md-admonition-bg-color: #eff1f5;
+    
+    --md-footer-fg-color: #4c4f69;
+    --md-footer-fg-color--light: #6c6f85;
+    --md-footer-fg-color--lighter: #9ca0b0;
+    --md-footer-bg-color: #e6e9ef;
+    --md-footer-bg-color--dark: #dce0e8;
+    
+    /* Собственные переменные для анимаций */
+    --cute-primary: #8839ef;
+    --cute-secondary: #ea76cb;
+    --cute-accent: #d20f39;
+    --cute-bg: #eff1f5;
+    --cute-surface: #f4f5f8;
+    --cute-text: #4c4f69;
+    --cute-text-muted: #6c6f85;
+    --cute-gradient: linear-gradient(135deg, #8839ef, #ea76cb, #d20f39);
+    --cute-shadow: 0 4px 20px rgba(136, 57, 239, 0.15);
+    --cute-glow: 0 0 20px rgba(136, 57, 239, 0.3);
+  }
+  
+  /* Catppuccin Frappe с фиолетовым оттенком */
+  [data-md-color-scheme="catppuccin-frappe-purple"] {
+    --md-primary-fg-color: #ca9ee6;
+    --md-primary-fg-color--light: #d4a8ea;
+    --md-primary-fg-color--dark: #c09de2;
+    --md-primary-bg-color: #303446;
+    --md-primary-bg-color--light: #414559;
+    
+    --md-accent-fg-color: #f4b8e4;
+    --md-accent-fg-color--transparent: #f4b8e41a;
+    --md-accent-bg-color: #f4b8e4;
+    --md-accent-bg-color--light: #3b4252;
+    
+    --md-default-fg-color: #c6d0f5;
+    --md-default-fg-color--light: #b5bfe2;
+    --md-default-fg-color--lighter: #a5adce;
+    --md-default-fg-color--lightest: #949cbb;
+    --md-default-bg-color: #303446;
+    --md-default-bg-color--light: #414559;
+    --md-default-bg-color--lighter: #51576d;
+    --md-default-bg-color--lightest: #626880;
+    
+    --md-code-fg-color: #c6d0f5;
+    --md-code-bg-color: #414559;
+    --md-code-hl-color: #eebebe;
+    --md-code-hl-number-color: #ef9f76;
+    --md-code-hl-special-color: #f4b8e4;
+    --md-code-hl-function-color: #ca9ee6;
+    --md-code-hl-constant-color: #ef9f76;
+    --md-code-hl-keyword-color: #ca9ee6;
+    --md-code-hl-string-color: #a6d189;
+    --md-code-hl-name-color: #81c8be;
+    --md-code-hl-operator-color: #99d1db;
+    --md-code-hl-punctuation-color: #a5adce;
+    --md-code-hl-comment-color: #737994;
+    --md-code-hl-generic-color: #e78284;
+    --md-code-hl-variable-color: #c6d0f5;
+    
+    --md-typeset-color: #c6d0f5;
+    --md-typeset-a-color: #ca9ee6;
+    --md-typeset-mark-color: #eebebe;
+    --md-typeset-del-color: #e78284;
+    --md-typeset-ins-color: #a6d189;
+    --md-typeset-kbd-color: #a5adce;
+    --md-typeset-kbd-accent-color: #949cbb;
+    --md-typeset-kbd-border-color: #737994;
+    
+    --md-admonition-fg-color: #c6d0f5;
+    --md-admonition-bg-color: #303446;
+    
+    --md-footer-fg-color: #c6d0f5;
+    --md-footer-fg-color--light: #b5bfe2;
+    --md-footer-fg-color--lighter: #a5adce;
+    --md-footer-bg-color: #414559;
+    --md-footer-bg-color--dark: #303446;
+    
+    /* Собственные переменные для анимаций */
+    --cute-primary: #ca9ee6;
+    --cute-secondary: #f4b8e4;
+    --cute-accent: #e78284;
+    --cute-bg: #303446;
+    --cute-surface: #414559;
+    --cute-text: #c6d0f5;
+    --cute-text-muted: #b5bfe2;
+    --cute-gradient: linear-gradient(135deg, #ca9ee6, #f4b8e4, #e78284);
+    --cute-shadow: 0 4px 20px rgba(202, 158, 230, 0.15);
+    --cute-glow: 0 0 20px rgba(202, 158, 230, 0.3);
+  }
+  
+  /* Базовые стили для body */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
